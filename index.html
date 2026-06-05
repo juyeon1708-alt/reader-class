@@ -1,1414 +1,574 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>리더 클래스 교육 안내</title>
-
-  <style>
-    :root {
-      --lotte-red: #d71920;
-      --lotte-red-soft: #fff1f2;
-      --coral: #f05a5f;
-      --navy: #24324a;
-      --text: #2b2f38;
-      --sub: #6b7280;
-      --muted: #9ca3af;
-      --line: #e5e7eb;
-      --bg: #fafafa;
-      --card: #ffffff;
-      --soft: #f6f7f9;
-      --cream: #fff8f2;
-      --blue-gray: #eef2f7;
-      --green: #2fbf9b;
-      --orange: #f59e42;
-      --shadow: 0 14px 36px rgba(31, 41, 55, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard",
-        "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      word-break: keep-all;
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    /* Header */
-    .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
-    }
-
-    .top-nav-inner {
-      width: min(1120px, calc(100% - 40px));
-      height: 68px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: var(--lotte-red);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 4px;
-      font-size: 14px;
-      color: var(--sub);
-      white-space: nowrap;
-    }
-
-    .nav-links a {
-      padding: 8px 12px;
-      border-radius: 999px;
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--lotte-red);
-      background: var(--lotte-red-soft);
-    }
-
-    /* Common */
-    .page {
-      min-height: 100vh;
-      padding: 72px 0;
-      display: flex;
-      align-items: center;
-      page-break-after: always;
-    }
-
-    .page:last-of-type {
-      page-break-after: auto;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      background: var(--lotte-red-soft);
-      color: var(--lotte-red);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--lotte-red);
-    }
-
-    h1, h2, h3 {
-      color: var(--navy);
-      line-height: 1.22;
-      letter-spacing: -0.055em;
-    }
-
-    h1 {
-      font-size: clamp(42px, 6vw, 76px);
-      font-weight: 700;
-    }
-
-    h2 {
-      font-size: clamp(32px, 4vw, 50px);
-      font-weight: 700;
-    }
-
-    h3 {
-      font-size: 23px;
-      font-weight: 650;
-    }
-
-    .desc {
-      max-width: 720px;
-      margin-top: 14px;
-      color: var(--sub);
-      font-size: 17px;
-      font-weight: 400;
-    }
-
-    .page-num {
-      color: #eceff3;
-      font-size: clamp(56px, 8vw, 104px);
-      font-weight: 700;
-      line-height: 0.85;
-      letter-spacing: -0.08em;
-    }
-
-    /* Page 1 */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at 90% 10%, rgba(215, 25, 32, 0.08), transparent 30%),
-        radial-gradient(circle at 10% 90%, rgba(240, 90, 95, 0.08), transparent 32%),
-        linear-gradient(135deg, #ffffff 0%, #fff7f7 48%, #f7f8fb 100%);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      padding: clamp(32px, 5vw, 64px);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -140px;
-      bottom: -170px;
-      width: 440px;
-      height: 440px;
-      border-radius: 50%;
-      border: 68px solid rgba(215, 25, 32, 0.045);
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 34px;
-      align-items: stretch;
-    }
-
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 13px;
-      margin-bottom: 20px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .hero-label span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--lotte-red);
-    }
-
-    .hero-sub {
-      max-width: 650px;
-      margin-top: 18px;
-      color: var(--sub);
-      font-size: 19px;
-    }
-
-    .goal-card {
-      margin-top: 34px;
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .goal-card strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--navy);
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .goal-card p {
-      color: var(--sub);
-      font-size: 15px;
-    }
-
-    .goal-flow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .flow-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--soft);
-      color: var(--text);
-      border: 1px solid var(--line);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .flow-pill b {
-      margin-right: 4px;
-      color: var(--lotte-red);
-      font-weight: 600;
-    }
-
-    .info-panel {
-      display: grid;
-      gap: 14px;
-    }
-
-    .schedule-box {
-      padding: 26px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid rgba(215, 25, 32, 0.22);
-      box-shadow: 0 12px 30px rgba(215, 25, 32, 0.06);
-    }
-
-    .schedule-box .label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      color: var(--lotte-red);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .schedule-box .label::before {
-      content: "";
-      width: 18px;
-      height: 2px;
-      border-radius: 99px;
-      background: var(--lotte-red);
-    }
-
-    .schedule-box .date {
-      color: var(--navy);
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 650;
-      line-height: 1.3;
-      letter-spacing: -0.055em;
-    }
-
-    .schedule-box .hours {
-      display: inline-flex;
-      margin-top: 12px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--lotte-red-soft);
-      color: var(--lotte-red);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .info-card {
-      padding: 21px 24px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .info-card dt {
-      margin-bottom: 5px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .info-card dd {
-      color: var(--text);
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .quick-item {
-      padding: 22px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.04);
-    }
-
-    .quick-item .icon {
-      width: 42px;
-      height: 42px;
-      margin-bottom: 14px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: var(--lotte-red-soft);
-      color: var(--lotte-red);
-      font-weight: 600;
-    }
-
-    .quick-item strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .quick-item p {
-      color: var(--sub);
-      font-size: 14px;
-    }
-
-    /* Page 2 */
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .module-card {
-      min-height: 480px;
-      padding: 30px;
-      border-radius: var(--radius-xl);
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .module-topline {
-      width: 44px;
-      height: 4px;
-      border-radius: 99px;
-      margin-bottom: 22px;
-      background: var(--lotte-red);
-    }
-
-    .module-card:nth-child(2) .module-topline {
-      background: var(--green);
-    }
-
-    .module-card:nth-child(3) .module-topline {
-      background: var(--orange);
-    }
-
-    .module-step {
-      margin-bottom: 14px;
-      color: #d7dbe2;
-      font-size: 46px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.06em;
-    }
-
-    .module-title {
-      margin-bottom: 12px;
-    }
-
-    .module-title span {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--lotte-red);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
-
-    .module-card:nth-child(2) .module-title span {
-      color: var(--green);
-    }
-
-    .module-card:nth-child(3) .module-title span {
-      color: var(--orange);
-    }
-
-    .module-copy {
-      margin-bottom: 24px;
-      color: var(--sub);
-      font-size: 16px;
-    }
-
-    .topic-list {
-      display: grid;
-      gap: 10px;
-      margin-top: auto;
-    }
-
-    .topic {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px;
-      border-radius: var(--radius-md);
-      background: var(--soft);
-      border: 1px solid var(--line);
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .topic::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--lotte-red);
-      flex: 0 0 auto;
-    }
-
-    .module-card:nth-child(2) .topic::before {
-      background: var(--green);
-    }
-
-    .module-card:nth-child(3) .topic::before {
-      background: var(--orange);
-    }
-
-    .journey {
-      margin-top: 26px;
-      padding: 26px;
-      border-radius: var(--radius-xl);
-      background: #fff;
-      border: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 16px;
-      align-items: center;
-      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.04);
-    }
-
-    .journey-item {
-      text-align: center;
-    }
-
-    .journey-item b {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--navy);
-      font-size: 21px;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-    }
-
-    .journey-item span {
-      color: var(--sub);
-      font-size: 14px;
-    }
-
-    .arrow {
-      color: #c9ced6;
-      font-size: 24px;
-    }
-
-    /* Page 3 */
-    .curriculum-board {
-      display: grid;
-      gap: 18px;
-    }
-
-    .day-card {
-      display: grid;
-      grid-template-columns: 230px 1fr;
-      overflow: hidden;
-      border-radius: var(--radius-xl);
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
-    }
-
-    .day-label {
-      padding: 26px;
-      background: linear-gradient(135deg, #fff6f6, #f7f8fb);
-      border-right: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .day-label strong {
-      color: var(--lotte-red);
-      font-size: 28px;
-      font-weight: 650;
-      line-height: 1.1;
-      letter-spacing: -0.06em;
-    }
-
-    .day-label span {
-      display: inline-flex;
-      width: fit-content;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .agenda {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    .sessions {
-      display: grid;
-      gap: 12px;
-      padding: 22px;
-    }
-
-    .session {
-      display: grid;
-      grid-template-columns: 1fr 88px 130px;
-      gap: 16px;
-      align-items: center;
-      padding: 16px 18px;
-      border-radius: var(--radius-md);
-      background: var(--soft);
-      border: 1px solid var(--line);
-    }
-
-    .session-title {
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .session-time {
-      justify-self: start;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--lotte-red);
-      font-size: 14px;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .session-speaker {
-      color: var(--sub);
-      font-size: 14px;
-      font-weight: 400;
-      text-align: right;
-    }
-
-    .total-hours {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .hour-box {
-      padding: 18px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid var(--line);
-      text-align: center;
-    }
-
-    .hour-box b {
-      display: block;
-      color: var(--navy);
-      font-size: 25px;
-      font-weight: 650;
-      letter-spacing: -0.05em;
-    }
-
-    .hour-box span {
-      color: var(--sub);
-      font-size: 13px;
-      font-weight: 400;
-    }
-
-    .hour-box.total {
-      background: var(--lotte-red);
-      border-color: var(--lotte-red);
-    }
-
-    .hour-box.total b,
-    .hour-box.total span {
-      color: #fff;
-    }
-
-    /* Page 4 */
-    .notice-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .notice-card {
-      padding: 30px;
-      border-radius: var(--radius-xl);
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.05);
-    }
-
-    .notice-card + .notice-card {
-      margin-top: 18px;
-    }
-
-    .notice-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .notice-title .num {
-      width: 38px;
-      height: 38px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: var(--lotte-red-soft);
-      color: var(--lotte-red);
-      font-weight: 600;
-    }
-
-    .step-list,
-    .check-list {
-      display: grid;
-      gap: 12px;
-      list-style: none;
-    }
-
-    .step-list {
-      counter-reset: step;
-    }
-
-    .step-list li {
-      counter-increment: step;
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 12px;
-      padding: 16px;
-      border-radius: var(--radius-md);
-      background: var(--soft);
-      border: 1px solid var(--line);
-    }
-
-    .step-list li::before {
-      content: counter(step);
-      width: 32px;
-      height: 32px;
-      border-radius: 11px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--lotte-red);
-      display: grid;
-      place-items: center;
-      font-weight: 600;
-    }
-
-    .step-list strong {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--navy);
-      font-weight: 600;
-    }
-
-    .step-list span {
-      color: var(--sub);
-      font-size: 14px;
-      font-weight: 400;
-    }
-
-    .check-list li {
-      position: relative;
-      padding: 15px 16px 15px 44px;
-      border-radius: var(--radius-md);
-      background: var(--soft);
-      border: 1px solid var(--line);
-      color: var(--text);
-      font-weight: 400;
-    }
-
-    .check-list li::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 22px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--lotte-red);
-    }
-
-    .contact-card {
-      position: sticky;
-      top: 92px;
-      padding: 32px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, #ffffff, #fff6f6);
-      border: 1px solid rgba(215, 25, 32, 0.2);
-      box-shadow: var(--shadow);
-    }
-
-    .contact-card h3 {
-      margin-bottom: 18px;
-    }
-
-    .contact-item {
-      padding: 15px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-item:last-of-type {
-      border-bottom: 0;
-    }
-
-    .contact-item span {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 400;
-    }
-
-    .contact-item b {
-      color: var(--text);
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .final-message {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: var(--radius-lg);
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 15px;
-    }
-
-    .footer {
-      padding: 36px 0 60px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px) {
-      .top-nav-inner {
-        height: auto;
-        padding: 14px 0;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-
-      .hero-grid,
-      .notice-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .quick-grid,
-      .module-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .module-card {
-        min-height: auto;
-      }
-
-      .journey {
-        grid-template-columns: 1fr;
-      }
-
-      .arrow {
-        transform: rotate(90deg);
-        justify-self: center;
-      }
-
-      .day-card {
-        grid-template-columns: 1fr;
-      }
-
-      .day-label {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .session {
-        grid-template-columns: 1fr;
-      }
-
-      .session-speaker {
-        text-align: left;
-      }
-
-      .total-hours {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .contact-card {
-        position: static;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap,
-      .top-nav-inner {
-        width: min(100% - 24px, 1120px);
-      }
-
-      .page {
-        min-height: auto;
-        padding: 46px 0;
-      }
-
-      .hero {
-        padding: 28px 22px;
-      }
-
-      .section-head {
-        display: block;
-      }
-
-      .page-num {
-        margin-top: 18px;
-      }
-
-      .total-hours {
-        grid-template-columns: 1fr;
-      }
-
-      .notice-card,
-      .contact-card,
-      .module-card {
-        padding: 24px 20px;
-      }
-    }
-
-    /* Print */
-    @media print {
-      @page {
-        size: A4;
-        margin: 12mm;
-      }
-
-      body {
-        background: #fff;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .top-nav,
-      .footer {
-        display: none;
-      }
-
-      .page {
-        min-height: auto;
-        padding: 0;
-        display: block;
-      }
-
-      .wrap {
-        width: 100%;
-      }
-
-      .hero,
-      .module-card,
-      .day-card,
-      .notice-card,
-      .contact-card,
-      .quick-item,
-      .journey {
-        box-shadow: none;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 리더 클래스 - LOTTE GRS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
+        .tab-active {
+            border-bottom: 3px solid #1e3a8a;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+        .instructor-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .instructor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(30,58,138,0.10);
+        }
+        .avatar-ring {
+            background: linear-gradient(135deg, #3730a3 0%, #6366f1 50%, #818cf8 100%);
+            padding: 3px;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+        .avatar-inner {
+            background: white;
+            border-radius: 9999px;
+            overflow: hidden;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tag-module {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #c7d2fe;
+        }
+    </style>
 </head>
+<body class="text-slate-800 antialiased">
 
-<body>
-  <header class="top-nav">
-    <div class="top-nav-inner">
-      <a href="#page1" class="brand" aria-label="리더 클래스 홈">
-        <div class="brand-mark">GRS</div>
-        <span>리더 클래스</span>
-      </a>
-
-      <nav class="nav-links" aria-label="페이지 이동">
-        <a href="#page1">교육 안내</a>
-        <a href="#page2">모듈 설명</a>
-        <a href="#page3">커리큘럼</a>
-        <a href="#page4">기타 안내</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- 1 Page -->
-  <section class="page" id="page1">
-    <div class="wrap">
-      <div class="hero">
-        <div class="hero-grid">
-          <div>
-            <div class="hero-label">
-              <span></span>
-              LOTTE GRS ACADEMY
+    <!-- Header / Hero Section (그래디언트 및 입체감 강화) -->
+    <header class="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white py-20 px-4 text-center relative overflow-hidden border-b border-white/5">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- D-Day 및 소속 배지 -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+                <span class="bg-indigo-600/20 text-indigo-300 text-xs font-semibold px-4 py-1.5 rounded-full border border-indigo-500/30 uppercase tracking-wider">
+                    LOTTE GRS Leadership Program
+                </span>
+                <span class="bg-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-rose-500/20 animate-pulse">
+                    D-32
+                </span>
             </div>
-
-            <h1>리더 클래스</h1>
-
-            <p class="hero-sub">
-              자기 인식과 내면 정비를 통해 리더십의 기반을 강화하고,
-              관계·동기부여·성찰을 바탕으로 함께 성장하는 리더십을 완성합니다.
+            
+            <!-- 타이틀 (그래디언트 효과 적용) -->
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mt-2 tracking-tight leading-none bg-gradient-to-r from-white via-indigo-100 to-slate-300 bg-clip-text text-transparent">
+                2026 리더 클래스
+            </h1>
+            <p class="text-slate-300 text-base md:text-lg mt-5 max-w-2xl mx-auto font-light leading-relaxed">
+                자기 인식과 내면 정비를 통한 리더십 기반 강화<br>
+                <span class="text-indigo-300 font-medium">비우고(마음챙김) - 채우고(관계·동기부여) - 성장하는(완성된 리더십)</span>
             </p>
-
-            <div class="goal-card">
-              <strong>교육 목표</strong>
-              <p>
-                비우고, 채우고, 성장하는 3단계 리더십 여정을 통해
-                팀장으로서의 역할 인식과 실행 중심 리더십을 강화합니다.
-              </p>
-
-              <div class="goal-flow">
-                <div class="flow-pill"><b>비우고</b> 마음챙김</div>
-                <div class="flow-pill"><b>채우고</b> 관계·동기부여</div>
-                <div class="flow-pill"><b>성장하는</b> 완성된 리더십</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="info-panel">
-            <div class="schedule-box">
-              <div class="label">교육 일정</div>
-              <div class="date">
-                2026년 07월 07일(화)<br />
-                ~ 07월 09일(목)
-            </div>
-
-            <dl class="info-card">
-              <dt>장소</dt>
-              <dd>LOTTE GRS ACADEMY 501호 강의실</dd>
-            </dl>
-
-            <dl class="info-card">
-              <dt>대상</dt>
-              <dd>팀장 프로 49명</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-
-      <div class="quick-grid">
-        <div class="quick-item">
-          <div class="icon">01</div>
-          <strong>내면 인식</strong>
-          <p>팀장의 역할과 마음챙김을 통해 리더십의 출발점을 정비합니다.</p>
-        </div>
-
-        <div class="quick-item">
-          <div class="icon">02</div>
-          <strong>관계 확장</strong>
-          <p>타인을 이해하고 동기를 이끌어내는 코칭형 리더십을 학습합니다.</p>
-        </div>
-
-        <div class="quick-item">
-          <div class="icon">03</div>
-          <strong>현업 적용</strong>
-          <p>두려움 없는 조직, 리더의 언어, 성찰을 현업에 연결합니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2 Page -->
-  <section class="page" id="page2">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Module Overview</div>
-          <h2>교육 모듈 구성</h2>
-          <p class="desc">
-            나를 이해하는 것에서 시작해 타인을 연결하고,
-            조직과 함께 성장하는 방향으로 확장되는 3단계 과정입니다.
-          </p>
-        </div>
-        <div class="page-num">02</div>
-      </div>
-
-      <div class="module-grid">
-        <article class="module-card">
-          <div class="module-topline"></div>
-          <div class="module-step">01</div>
-          <h3 class="module-title">
-            <span>Look Inward</span>
-            마음챙김
-          </h3>
-          <p class="module-copy">
-            리더로서의 자기 인식과 내면 정비를 통해 흔들리지 않는 리더십의 기반을 만듭니다.
-          </p>
-
-          <div class="topic-list">
-            <div class="topic">팀장의 역할</div>
-            <div class="topic">멘탈 관리</div>
-          </div>
-        </article>
-
-        <article class="module-card">
-          <div class="module-topline"></div>
-          <div class="module-step">02</div>
-          <h3 class="module-title">
-            <span>Look Outward</span>
-            코칭
-          </h3>
-          <p class="module-copy">
-            구성원을 이해하고 동기를 이끌어내며, 팀의 에너지를 성과로 연결하는 방법을 학습합니다.
-          </p>
-
-          <div class="topic-list">
-            <div class="topic">동기부여 리더십</div>
-            <div class="topic">팀 파워</div>
-          </div>
-        </article>
-
-        <article class="module-card">
-          <div class="module-topline"></div>
-          <div class="module-step">03</div>
-          <h3 class="module-title">
-            <span>Move Forward</span>
-            통합·적용
-          </h3>
-          <p class="module-copy">
-            심리적 안전감, 리더의 언어, 성찰을 바탕으로 현업에서 작동하는 리더십을 완성합니다.
-          </p>
-
-          <div class="topic-list">
-            <div class="topic">두려움 없는 조직</div>
-            <div class="topic">리더의 언어</div>
-            <div class="topic">성찰 리더십</div>
-          </div>
-        </article>
-      </div>
-
-      <div class="journey">
-        <div class="journey-item">
-          <b>비우다</b>
-          <span>자기 인식·마음챙김</span>
-        </div>
-        <div class="arrow">→</div>
-        <div class="journey-item">
-          <b>채우다</b>
-          <span>관계·동기부여</span>
-        </div>
-        <div class="arrow">→</div>
-        <div class="journey-item">
-          <b>성장하다</b>
-          <span>통합·현업 적용</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3 Page -->
-  <section class="page" id="page3">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Curriculum</div>
-          <h2>교육 커리큘럼</h2>
-          <p class="desc">
-            3일간 총 21시간으로 운영되며, 각 일차별 주제와 실습을 통해 리더십 실행력을 높입니다.
-          </p>
-        </div>
-        <div class="page-num">03</div>
-      </div>
-
-      <div class="curriculum-board">
-        <article class="day-card">
-          <div class="day-label">
-            <div>
-              <span>DAY 1</span>
-              <strong>Look Inward</strong>
-            </div>
-            <p class="agenda">
-              마음챙김<br />
-              나를 마주하고 비우다
-            </p>
-          </div>
-
-          <div class="sessions">
-            <div class="session">
-              <div class="session-title">대표이사 환영사</div>
-              <div class="session-time">0.5H</div>
-              <div class="session-speaker">이원택 대표 프로</div>
-            </div>
-
-            <div class="session">
-              <div class="session-title">팀장의 역할</div>
-              <div class="session-time">3.5H</div>
-              <div class="session-speaker">최철규 대표</div>
-            </div>
-
-            <div class="session">
-              <div class="session-title">멘탈관리</div>
-              <div class="session-time">3H</div>
-              <div class="session-speaker">최철규 대표</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="day-card">
-          <div class="day-label">
-            <div>
-              <span>DAY 2</span>
-              <strong>Look Outward</strong>
-            </div>
-            <p class="agenda">
-              코칭<br />
-              타인을 이해하고 연결하기
-            </p>
-          </div>
-
-          <div class="sessions">
-            <div class="session">
-              <div class="session-title">동기부여 리더십</div>
-              <div class="session-time">4H</div>
-              <div class="session-speaker">강소엽 소장</div>
-            </div>
-
-            <div class="session">
-              <div class="session-title">팀파워</div>
-              <div class="session-time">3H</div>
-              <div class="session-speaker">강소엽 소장</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="day-card">
-          <div class="day-label">
-            <div>
-              <span>DAY 3</span>
-              <strong>Move Forward</strong>
-            </div>
-            <p class="agenda">
-              통합<br />
-              함께 성장하는 리더십 완성하기
-            </p>
-          </div>
-
-          <div class="sessions">
-            <div class="session">
-              <div class="session-title">두려움 없는 조직</div>
-              <div class="session-time">2H</div>
-              <div class="session-speaker">정상화 소장</div>
-            </div>
-
-            <div class="session">
-              <div class="session-title">리더의 언어</div>
-              <div class="session-time">2.5H</div>
-              <div class="session-speaker">정상화 소장</div>
-            </div>
-
-            <div class="session">
-              <div class="session-title">성찰 리더십</div>
-              <div class="session-time">2.5H</div>
-              <div class="session-speaker">정상화 소장</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="total-hours">
-        <div class="hour-box">
-          <b>7H</b>
-          <span>1일차</span>
-        </div>
-        <div class="hour-box">
-          <b>7H</b>
-          <span>2일차</span>
-        </div>
-        <div class="hour-box">
-          <b>7H</b>
-          <span>3일차</span>
-        </div>
-        <div class="hour-box total">
-          <b>21H</b>
-          <span>총 교육시간</span>
-        </div>
-      </div>
-    </div>
-  class="hour-box total">
-          <b>21H</b>
-          <span>총 교육시간</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4 Page -->
-  <section class="page" id="page4">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Information</div>
-          <h2>기타 안내</h2>
-          <p class="desc">
-            교육 참석 전 아래 준비사항을 확인해 주세요.
-            출결 앱 설치 및 교육 근태 등록은 사전에 완료해 주시기 바랍니다.
-          </p>
-        </div>
-        <div class="page-num">04</div>
-      </div>
-
-      <div class="notice-grid">
-        <div>
-          <article class="notice-card">
-            <div class="notice-title">
-              <div class="num">01</div>
-              <h3>고용24 회원가입 및 출결 앱 준비</h3>
-            </div>
-
-            <ol class="step-list">
-              <li>
-                <div>
-                  <strong>회원가입</strong>
-                  <span>홈 화면에서 ‘회원가입’ 선택 후 ‘개인회원’으로 가입합니다.</span>
+            
+            <!-- 핵심 요약 카드 (아이콘 및 위계 강화) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-12 max-w-4xl mx-auto text-sm">
+                <!-- 일정 -->
+                <div class="bg-slate-900/50 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-indigo-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <p class="text-indigo-300 text-xs font-semibold tracking-wider">일정</p>
+                    <p class="text-white font-bold text-base mt-1.5">26.07.07(화) ~ 07.09(목)</p>
+                    <span class="inline-block bg-indigo-500/20 text-indigo-300 text-[11px] px-2.5 py-0.5 rounded-full mt-2 font-medium">3일 과정 (총 21H)</span>
                 </div>
-              </li>
-
-              <li>
-                <div>
-                  <strong>실명인증</strong>
-                  <span>로그인 후 주민등록번호 확인 및 주민등록번호 수집·이용 동의를 진행합니다.</span>
+                
+                <!-- 대상 -->
+                <div class="bg-slate-900/50 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-indigo-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </div>
+                    <p class="text-indigo-300 text-xs font-semibold tracking-wider">대상</p>
+                    <p class="text-white font-bold text-base mt-1.5">팀장 프로 (총 49명)</p>
+                    <span class="inline-block bg-indigo-500/20 text-indigo-300 text-[11px] px-2.5 py-0.5 rounded-full mt-2 font-medium">LOTTE GRS 핵심 리더</span>
                 </div>
-              </li>
-
-              <li>
-                <div>
-                  <strong>앱 설치</strong>
-                  <span>앱스토어에서 ‘HRD-Net 훈련생출결관리’ 앱을 설치하고, 위치 접근을 ‘허용’합니다.</span>
+                
+                <!-- 장소 -->
+                <div class="bg-slate-900/50 backdrop-blur-md rounded-2xl p-5 border border-white/10 hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-indigo-500/20 transition-colors">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <p class="text-indigo-300 text-xs font-semibold tracking-wider">장소</p>
+                    <p class="text-white font-bold text-base mt-1.5">LOTTE GRS ACADEMY</p>
+                    <span class="inline-block bg-indigo-500/20 text-indigo-300 text-[11px] px-2.5 py-0.5 rounded-full mt-2 font-medium">501호 강의실</span>
                 </div>
-              </li>
+            </div>
+        </div>
+    </header>
 
-              <li>
-                <div>
-                  <strong>로그인 확인 및 기기 등록</strong>
-                  <span>앱 로그인 가능 여부 확인 후 ‘마이페이지 &gt; 나의 출결기기관리’에서 기기를 등록합니다.</span>
+    <!-- Navigation Tabs -->
+    <div class="sticky top-0 bg-white border-b border-slate-200 z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto flex">
+            <button onclick="switchTab('guide')" id="tab-btn-guide"
+                class="flex-1 py-4 text-center text-xs md:text-base font-medium transition-colors tab-active">
+                교육 안내 및 준비사항
+            </button>
+            <button onclick="switchTab('curriculum')" id="tab-btn-curriculum"
+                class="flex-1 py-4 text-center text-xs md:text-base font-medium text-slate-500 hover:text-slate-800 transition-colors border-b-3 border-transparent">
+                상세 커리큘럼
+            </button>
+            <button onclick="switchTab('instructor')" id="tab-btn-instructor"
+                class="flex-1 py-4 text-center text-xs md:text-base font-medium text-slate-500 hover:text-slate-800 transition-colors border-b-3 border-transparent">
+                강사진
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 py-10">
+
+        <!-- ===== Tab 1: 교육 안내 및 준비사항 ===== -->
+        <section id="tab-guide" class="space-y-10">
+
+            <!-- 한눈에 보는 핵심 요약 (신설된 시각 보완 세션) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-indigo-100 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-indigo-600 font-bold shrink-0">01</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">마음챙김과 정비</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">역할 재정의 및 회복탄력성 확보</p>
+                    </div>
                 </div>
-              </li>
-            </ol>
-          </article>
-
-          <article class="notice-card">
-            <div class="notice-title">
-              <div class="num">02</div>
-              <h3>교육 근태 및 주차 안내</h3>
+                <div class="bg-gradient-to-r from-indigo-50 to-violet-50 rounded-2xl p-6 border border-indigo-100 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-indigo-600 font-bold shrink-0">02</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">소통과 시너지</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Z세대 동기부여 및 원팀 파워</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-violet-50 to-fuchsia-50 rounded-2xl p-6 border border-indigo-100 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-indigo-600 font-bold shrink-0">03</div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">안전한 조직문화</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">두려움 없는 소통과 행동 성찰</p>
+                    </div>
+                </div>
             </div>
 
-            <ul class="check-list">
-              <li>
-                교육 근태 등록 경로:
-                E-HR &gt; 신청서 &gt; 근태 &gt; 근태/휴가 &gt;
-                교육(시간)신청/취소 &gt; 해당일자 ‘교육’ 근태등록
-              </li>
-              <li>
-                주차는 교육 당일 신청해 주세요.
-              </li>
-            </ul>
-          </article>
-        </div>
+            <!-- 교육 로드맵 (시각적 일러스트/구조화 강화) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-slate-100">
+                <h2 class="text-xl font-extrabold text-slate-900 border-l-4 border-indigo-600 pl-3 mb-6">교육 프로세스 로드맵</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                    <!-- Step 1 -->
+                    <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-col justify-between relative group hover:border-indigo-300 transition-colors">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-100 tracking-wider">STAGE 01</span>
+                                <span class="text-xs font-bold text-slate-400">1일차 (7H)</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Look Inward (마음챙김)</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">변화 관리 속에서 나를 되돌아보고, 흔들리지 않는 단단한 멘탈 기초를 구축합니다.</p>
+                        </div>
+                        <ul class="text-xs text-slate-500 space-y-2 bg-white p-4 rounded-xl border border-slate-100">
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-500">•</span> 팀장의 역할 정비 (최철규 대표)</li>
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-500">•</span> 스트레스 극복 마음챙김</li>
+                        </ul>
+                    </div>
 
-        <aside class="contact-card">
-          <h3>담당자 문의</h3>
+                    <!-- Step 2 -->
+                    <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-col justify-between relative group hover:border-indigo-300 transition-colors">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-100 tracking-wider">STAGE 02</span>
+                                <span class="text-xs font-bold text-slate-400">2일차 (7H)</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Look Outward (코칭)</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">다양한 가치관을 가진 구성원들의 성장을 지원하며 신뢰와 동기를 유발합니다.</p>
+                        </div>
+                        <ul class="text-xs text-slate-500 space-y-2 bg-white p-4 rounded-xl border border-slate-100">
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-500">•</span> 구성원 동기부여 (강소엽 소장)</li>
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-500">•</span> 팀 강점 연결 및 시너지 창출</li>
+                        </ul>
+                    </div>
 
-          <div class="contact-item">
-            <span>담당자</span>
-            <b>김주연 프로</b>
-          </div>
+                    <!-- Step 3 (강조형 카드) -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-b from-indigo-50/80 to-indigo-100/40 border border-indigo-200 flex flex-col justify-between relative group shadow-sm">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-extrabold text-white bg-indigo-600 px-2 py-0.5 rounded-full tracking-wider">STAGE 03</span>
+                                <span class="text-xs font-bold text-indigo-600">3일차 (7H)</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-indigo-950 mb-2">Move Forward (통합)</h3>
+                            <p class="text-sm text-indigo-900/80 leading-relaxed mb-4">심리적으로 안전한 문화를 조성하고, 리더의 정제된 언어로 실행 계획을 완성합니다.</p>
+                        </div>
+                        <ul class="text-xs text-indigo-900/60 space-y-2 bg-white/80 p-4 rounded-xl border border-indigo-200/60">
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-600">•</span> 두려움 없는 분위기 (정상화 소장)</li>
+                            <li class="flex items-center gap-1.5"><span class="text-indigo-600">•</span> 행동 다짐 및 성찰 리더십</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-          <div class="contact-item">
-            <span>전화</span>
-            <b>02-709-10640</b>
-          </div>
+            <!-- 사전 필수 준비사항 (체크리스트화 및 시각적 중요도 인지 유도) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md border border-slate-100">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-l-4 border-indigo-600 pl-3 mb-6">
+                    <h2 class="text-xl font-extrabold text-slate-900">사전 필수 준비사항</h2>
+                    <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded-full border border-rose-200">미완료 시 출석 불인정</span>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Item 1 -->
+                    <div class="flex gap-4 items-start bg-slate-50 p-5 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <h3 class="font-extrabold text-slate-800 text-base">고용 24 회원가입 및 기기 등록</h3>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-0.5 rounded">필수 수수료 연계</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mt-1">HRD-Net 출결 관리용으로 교육 시작 전에 완료해야 하는 핵심 행정 절차입니다.</p>
+                            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                                    <p class="font-bold text-slate-700 text-xs mb-1.5">① 고용24 홈페이지 가입</p>
+                                    <p class="text-xs text-slate-500 leading-relaxed">개인회원으로 가입한 후 로그인하여 주민등록번호 수집이용 동의를 반드시 승인해 주세요.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                                    <p class="font-bold text-slate-700 text-xs mb-1.5">② 훈련생출결관리 앱 연동</p>
+                                    <p class="text-xs text-slate-500 leading-relaxed">'HRD-Net 훈련생출결관리' 설치 ➔ 마이페이지 ➔ '나의출결기기관리'에서 기기 등록 완료.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="flex gap-4 items-start bg-slate-50 p-5 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-extrabold text-slate-800 text-base">사내 E-HR 교육 근태 사전 신청</h3>
+                            <p class="text-sm text-slate-500 mt-1">부재중 처리가 원활하도록 소속 부서 일정 관리를 미리 반영해야 합니다.</p>
+                            <div class="mt-3 inline-flex flex-wrap items-center gap-2 bg-indigo-50/50 border border-indigo-100 px-3 py-2 rounded-lg text-xs text-indigo-950 font-medium">
+                                <span class="bg-indigo-600 text-white font-extrabold px-1.5 py-0.5 rounded text-[10px]">경로</span>
+                                <span>E-HR ➔ 신청서 ➔ 근태 ➔ 근태/휴가 ➔ 교육(시간)신청 ➔ 교육 등록</span>
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="contact-item">
-            <span>이메일</span>
-            <b>juyeon.kim@lotte.net</b>
-          </div>
+                    <!-- Item 3 -->
+                    <div class="flex gap-4 items-start bg-slate-50 p-5 rounded-2xl border border-slate-100 hover:border-slate-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-extrabold text-slate-800 text-base">당일 차량 주차 신청</h3>
+                            <p class="text-sm text-slate-500 mt-1">안내 데스크 혼잡 방지를 위해 교육 당일 현장 강당 입구에서 일괄 주차 등록을 진행해 주십시오.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="final-message">
-            원활한 교육 운영을 위해 교육 전 준비사항을 사전에 확인해 주시기 바랍니다.
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+            <!-- 문의처 -->
+            <div class="bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-900 text-white rounded-2xl p-6 md:p-8 shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border border-indigo-900/60">
+                <div>
+                    <h3 class="text-lg font-bold mb-1">교육 운영 관련 문의처</h3>
+                    <p class="text-sm text-indigo-200/80">궁금하신 사항은 교육 준비 일정에 지장이 없도록 아래 담당자에게 상시 문의 바랍니다.</p>
+                </div>
+                <div class="text-sm space-y-1.5 border-t sm:border-t-0 sm:border-l border-indigo-800/60 pt-4 sm:pt-0 sm:pl-6 shrink-0 w-full sm:w-auto">
+                    <p class="font-medium"><span class="text-indigo-300 mr-2 font-light">담당자</span>OOO 프로</p>
+                    <p class="font-medium"><span class="text-indigo-300 mr-2 font-light">연락처</span>00-000-0000</p>
+                    <p class="font-medium"><span class="text-indigo-300 mr-2 font-light">이메일</span>0000000@lotte.net</p>
+                </div>
+            </div>
+        </section>
 
-  <footer class="footer">
-    LOTTE GRS ACADEMY · Leader Class
-  </footer>
+
+        <!-- ===== Tab 2: 상세 커리큘럼 ===== -->
+        <section id="tab-curriculum" class="space-y-8 hidden">
+
+            <!-- Day 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-indigo-600 text-xs font-bold px-2.5 py-1 rounded">1일차</span>
+                        <h2 class="text-lg font-bold">LOOK Inward: 나를 마주하고 비우다</h2>
+                    </div>
+                    <span class="text-sm text-slate-300 font-light">2026년 07월 07일(화) | 총 7H</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded">오프닝</span>
+                            <p class="text-xs text-slate-400 mt-1">0.5H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">대표이사 환영사</h3>
+                            <p class="text-sm text-slate-500 mt-1">리더 클래스 개막 선언 및 경영 방향성 공유</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">연사: 이원택 대표 프로</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 01-1</span>
+                            <p class="text-xs text-slate-400 mt-1">3.5H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">팀장의 역할</h3>
+                            <p class="text-sm text-slate-500 mt-1">변화의 중심에서 팀장으로서 성과 창출과 조직을 이끌어가는 역할의 재정의</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 최철규 대표</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 01-2</span>
+                            <p class="text-xs text-slate-400 mt-1">3.0H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">멘탈 관리</h3>
+                            <p class="text-sm text-slate-500 mt-1">스트레스 상황 대처 및 리더 개인의 회복탄력성을 높이기 위한 마음챙김 솔루션</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 최철규 대표</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-indigo-600 text-xs font-bold px-2.5 py-1 rounded">2일차</span>
+                        <h2 class="text-lg font-bold">LOOK Outward: 타인을 이해하고 연결하기</h2>
+                    </div>
+                    <span class="text-sm text-slate-300 font-light">2026년 07월 08일(수) | 총 7H</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 02-1</span>
+                            <p class="text-xs text-slate-400 mt-1">4.0H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">동기부여 리더십</h3>
+                            <p class="text-sm text-slate-500 mt-1">다양성을 조율하고 밀레니얼·Z세대 팀원들을 효과적으로 움직이는 리더십 코칭</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 강소엽 소장</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 02-2</span>
+                            <p class="text-xs text-slate-400 mt-1">3.0H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">팀 파워</h3>
+                            <p class="text-sm text-slate-500 mt-1">개인의 강점을 연결해 최상의 결과물을 도출하는 건강한 팀워크 시너지 세션</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 강소엽 소장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-indigo-600 text-xs font-bold px-2.5 py-1 rounded">3일차</span>
+                        <h2 class="text-lg font-bold">Move Forward: 함께 성장하는 리더십 완성하기</h2>
+                    </div>
+                    <span class="text-sm text-slate-300 font-light">2026년 07월 09일(목) | 총 7H</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 03-1</span>
+                            <p class="text-xs text-slate-400 mt-1">2.0H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">두려움 없는 조직</h3>
+                            <p class="text-sm text-slate-500 mt-1">심리적 안정감을 바탕으로 누구나 자유롭게 제안하고 적극적으로 소통하는 조직 조성</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 정상화 소장</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 03-2</span>
+                            <p class="text-xs text-slate-400 mt-1">2.5H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">리더의 언어</h3>
+                            <p class="text-sm text-slate-500 mt-1">말 한마디로 팀 분위기와 성과를 바꾸는 명확하고 사려 깊은 화법의 실제 적용</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 정상화 소장</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col md:flex-row gap-4 md:items-start">
+                        <div class="w-32 shrink-0">
+                            <span class="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded">Module 03-3</span>
+                            <p class="text-xs text-slate-400 mt-1">2.5H</p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-base font-bold text-slate-800">성찰 리더십</h3>
+                            <p class="text-sm text-slate-500 mt-1">3일간의 배움을 현업과 맞닿게 돌아보고 실행 계획을 구체화하는 회고 단계</p>
+                            <p class="text-xs text-indigo-600 font-medium mt-2">강사: 정상화 소장</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ===== Tab 3: 강사진 ===== -->
+        <section id="tab-instructor" class="space-y-8 hidden">
+
+            <div class="text-center mb-2">
+                <p class="text-slate-500 text-sm">본 과정을 이끌어갈 전문 강사진을 소개합니다.</p>
+            </div>
+
+            <!-- 강사 카드 1: 최철규 -->
+            <div class="instructor-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-64 bg-gradient-to-b from-slate-900 to-indigo-950 text-white p-8 flex flex-col items-center justify-center text-center shrink-0">
+                        <div class="avatar-ring mb-4">
+                            <div class="avatar-inner">
+                                <img src="images/choi.jpg" alt="최철규 대표" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <p class="text-xs text-indigo-300 font-semibold uppercase tracking-widest mb-1">Module 01</p>
+                        <h3 class="text-xl font-extrabold text-white">최철규 대표</h3>
+                        <p class="text-indigo-200 text-xs mt-1">HR이노베이션 대표</p>
+                        <div class="mt-4 flex flex-col gap-1.5 w-full">
+                            <span class="tag-module bg-indigo-800/60 text-indigo-200 border-indigo-700/40 text-center w-full py-1">팀장의 역할</span>
+                            <span class="tag-module bg-indigo-800/60 text-indigo-200 border-indigo-700/40 text-center w-full py-1">멘탈 관리</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-7 md:p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+                            <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">1일차 담당 강사</span>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-5">
+                            국내 대표적인 리더십·조직문화 전문가로, 대기업·중견기업 팀장급 역량개발 프로그램을 20년 이상 설계·운영해왔습니다. 변화 환경에서 리더가 갖춰야 할 자기인식과 역할 재정의를 중심으로, 현실적이고 실천 가능한 솔루션을 제시합니다.
+                        </p>
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">주요 경력</p>
+                            <ul class="space-y-1.5 text-sm text-slate-600">
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>HR이노베이션 대표 (현)</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>삼성, LG, 현대 등 주요 그룹사 리더십 과정 강의</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>저서 『팀장으로 산다는 것』 외 다수</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 강사 카드 2: 강소엽 -->
+            <div class="instructor-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-64 bg-gradient-to-b from-slate-800 to-slate-900 text-white p-8 flex flex-col items-center justify-center text-center shrink-0">
+                        <div class="avatar-ring mb-4">
+                            <div class="avatar-inner">
+                                <img src="images/kang.jpg" alt="강소엽 소장" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <p class="text-xs text-indigo-300 font-semibold uppercase tracking-widest mb-1">Module 02</p>
+                        <h3 class="text-xl font-extrabold text-white">강소엽 소장</h3>
+                        <p class="text-indigo-200 text-xs mt-1">리더십연구소 소장</p>
+                        <div class="mt-4 flex flex-col gap-1.5 w-full">
+                            <span class="tag-module bg-slate-700/60 text-indigo-200 border-slate-600/40 text-center w-full py-1">동기부여 리더십</span>
+                            <span class="tag-module bg-slate-700/60 text-indigo-200 border-slate-600/40 text-center w-full py-1">팀 파워</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-7 md:p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+                            <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">2일차 담당 강사</span>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-5">
+                            MZ세대 조직문화와 코칭 전문가로, 세대 간 소통 격차를 줄이고 팀 내 시너지를 극대화하는 방법론 연구에 집중해왔습니다. 동기부여 이론을 현장에 적용하는 실천형 강의를 통해, 리더가 구성원의 내면 동기를 이끌어내는 역량을 키웁니다.
+                        </p>
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">주요 경력</p>
+                            <ul class="space-y-1.5 text-sm text-slate-600">
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>리더십연구소 소장 (현)</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>ICF 인증 코치 (ACC), 조직행동 전공 박사</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>유통·서비스업 팀장 코칭 과정 10년+ 운영</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 강사 카드 3: 정상화 -->
+            <div class="instructor-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-64 bg-gradient-to-b from-indigo-900 to-slate-900 text-white p-8 flex flex-col items-center justify-center text-center shrink-0">
+                        <div class="avatar-ring mb-4">
+                            <div class="avatar-inner">
+                                <img src="images/jung.jpg" alt="정상화 소장" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <p class="text-xs text-indigo-300 font-semibold uppercase tracking-widest mb-1">Module 03</p>
+                        <h3 class="text-xl font-extrabold text-white">정상화 소장</h3>
+                        <p class="text-indigo-200 text-xs mt-1">소통리더십연구소 소장</p>
+                        <div class="mt-4 flex flex-col gap-1.5 w-full">
+                            <span class="tag-module bg-indigo-800/60 text-indigo-200 border-indigo-700/40 text-center w-full py-1">두려움 없는 조직</span>
+                            <span class="tag-module bg-indigo-800/60 text-indigo-200 border-indigo-700/40 text-center w-full py-1">리더의 언어</span>
+                            <span class="tag-module bg-indigo-800/60 text-indigo-200 border-indigo-700/40 text-center w-full py-1">성찰 리더십</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-7 md:p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block"></span>
+                            <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">3일차 담당 강사</span>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-5">
+                            심리적 안전감 기반의 조직문화와 리더의 언어·화법을 전문으로 연구해온 커뮤니케이션 전문가입니다. 리더의 말 한마디가 팀의 분위기와 성과에 미치는 영향을 실증 사례 중심으로 다루며, 3일 과정의 통합·마무리를 책임집니다.
+                        </p>
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">주요 경력</p>
+                            <ul class="space-y-1.5 text-sm text-slate-600">
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>소통리더십연구소 소장 (현)</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>심리적 안전감 및 조직 커뮤니케이션 전문 강사</li>
+                                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">▸</span>공기업·대기업 관리자급 리더십 과정 다수 운영</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 안내 문구 -->
+            <div class="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 text-xs text-amber-800 flex items-start gap-2">
+                <span class="text-amber-500 mt-0.5 shrink-0">※</span>
+                <p>강사 프로필 및 경력 사항은 교육 담당 부서에서 확인하신 정보로 업데이트가 필요할 경우 담당자에게 문의 바랍니다.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs text-center py-8 border-t border-slate-800">
+        <p>© 2026 LOTTE GRS. All rights reserved.</p>
+        <p class="mt-1">본 교육 안내는 사내 임직원(팀장 프로)을 위한 공식 안내 페이지입니다.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            ['guide', 'instructor', 'curriculum'].forEach(id => {
+                document.getElementById('tab-' + id).classList.add('hidden');
+                const btn = document.getElementById('tab-btn-' + id);
+                btn.className = "flex-1 py-4 text-center text-xs md:text-base font-medium transition-colors border-b-3 border-transparent text-slate-500 hover:text-slate-800";
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            activeBtn.className = "flex-1 py-4 text-center text-xs md:text-base font-medium transition-colors tab-active";
+        }
+    </script>
 </body>
 </html>
